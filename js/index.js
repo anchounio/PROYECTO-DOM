@@ -1,30 +1,47 @@
-function CrearCarton1() {
-    let carton = [];
-    CrearCarton2(carton);
+// Seleccionamos el body
+let body = document.body;
+// Seleccionamos el contenedor de los divs
+let cardContainer = document.querySelector('.cards_container');
+// Array de emojis
+
+let emojiList = [
+    '💀',
+    '💀',
+    '👺',
+    '👺',
+    '🤡',
+    '🤡',
+    '🎅🏻',
+    '🎅🏻',
+    '👽',
+    '👽',
+    '🎃',
+    '🎃',
+    '👾',
+    '👾',
+    '🤖',
+    '🤖',
+];
+
+let emojiListRandom = [];
+
+function GenerateCard(emoji) {
+    const div = document.createElement('div');
+    div.innerHTML = `<div class="hidden ">${emojiList[emoji]} </div>`;
+    cardContainer.append(div);
 }
-
-function CrearCarton2(carton) {
-    let number = Math.floor(Math.random() * 16); // crea un número al azar del 1 al 99
-
-    // Si detecta que ya existe el número en el array, repite de nuevo la función, creándose
-    // un nuevo número al azar y haciendo otra vez esta comprobación. Así evitamos que se repitan
-    // números.
-    // Cuando se hayan asignado 15 números al cartón, se para el bucle y pasamos a la siguiente función.
-
-    for (let valor of carton) {
-        if (number === valor.number) {
-            CrearCarton2(carton);
-            return;
-        } else if (carton.length === 16) {
-            return;
-        }
+function GenerateCardboard() {
+    let number = Math.floor(Math.random() * 16);
+    console.log(emojiListRandom.find((e) => e === number));
+    if (emojiListRandom.find((e) => e === number) === undefined) {
+        emojiListRandom.push(number);
+        GenerateCard(number);
+        GenerateCardboard();
+    } else if (emojiListRandom.length === 16) {
+        return;
+    } else {
+        GenerateCardboard();
     }
-
-    let matched = false;
-    let nuevoNumero = { number, matched };
-    carton.push(nuevoNumero);
-    console.log(carton);
-    CrearCarton2(carton);
 }
 
-CrearCarton1();
+GenerateCardboard();
