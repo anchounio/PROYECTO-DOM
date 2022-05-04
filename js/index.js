@@ -13,6 +13,10 @@ let clickedDiv1 = '0';
 // Valor inicial vacío para la segunda carta.
 let clickedDiv2 = '';
 
+// Variable que lleva el recuento de intentos
+
+let intentos = 0;
+
 let emojiList = [
     '💀',
     '💀',
@@ -89,10 +93,14 @@ function cards() {
             if (clickedDiv1.textContent === clickedDiv2.textContent) {
                 clickedDiv1.className = 'emoji';
                 clickedDiv2.className = 'emoji';
+                intentos++;
+                console.log(`llevas ${intentos} intentos`);
             } else {
                 setTimeout(function () {
                     clickedDiv1.className = 'hidden';
                     clickedDiv2.className = 'hidden';
+                    intentos++;
+                    console.log(`llevas ${intentos} intentos`);
                 }, 1000);
             }
             setTimeout(function () {
