@@ -99,6 +99,11 @@ function cards() {
             // Estas 2 líneas sirven para bloquear todas las cartas ocultas para
             // que no se pueda pulsar sobre ellas mientras el programa decide
             // qué hacer con las 2 cartas seleccionadas previamente.
+
+            console.log(clickedDiv2);
+            console.log(clickedDiv2.textContent);
+            clickedDiv2.className = 'emoji';
+
             let hiddenCards = document
                 .querySelectorAll('.cards_container>.hidden')
                 .forEach((item) => {
@@ -106,10 +111,6 @@ function cards() {
                 });
 
             console.log(hiddenCards);
-
-            console.log(clickedDiv2);
-            console.log(clickedDiv2.textContent);
-            clickedDiv2.className = 'emoji';
 
             if (clickedDiv1.textContent === clickedDiv2.textContent) {
                 clickedDiv1.className = 'emoji';
@@ -123,7 +124,11 @@ function cards() {
                     .forEach((item) => {
                         item.className = 'hidden';
                     });
+<<<<<<< HEAD
                 isGameOver();
+=======
+                clickedDiv1 = '0'; // se reasigna clickedDiv1 a "0" para poder volver a empezar
+>>>>>>> abc4b6685be3727013dc6bf520dfd4bb81eb5de2
             } else {
                 setTimeout(function () {
                     // En caso de que las 2 cartas seleccionados no tengan el mismo emoji,
@@ -139,10 +144,14 @@ function cards() {
                         .forEach((item) => {
                             item.className = 'hidden';
                         });
+                    clickedDiv1 = '0'; // se reasigna clickedDiv1 a "0" para poder volver a empezar
                 }, 1000);
             }
+
             setTimeout(function () {
-                clickedDiv1 = '0';
+                console.log(
+                    'este segundo es necesario para que se muestre la segunda carta'
+                );
             }, 1000);
         }
     });
