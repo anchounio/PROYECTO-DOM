@@ -1,10 +1,10 @@
 // Seleccionamos el body
 let body = document.body;
+
 // Seleccionamos el contenedor de los divs
 let cardContainer = document.querySelector('.cards_container');
 
 let div = document.querySelector('div');
-// Array de emojis
 
 // Valor inicial de "0" para la primera carta que levantamos.
 // Se utiliza para diferenciar si la hemos levantado ya o no.
@@ -13,10 +13,11 @@ let clickedDiv1 = '0';
 // Valor inicial vacío para la segunda carta.
 let clickedDiv2 = '';
 
-// Variable que lleva el recuento de intentos
+// Valor inicial de la variable intentos del juego
 
 let intentos = 0;
 
+// Array de emojis
 let emojiList = [
     '💀',
     '💀',
@@ -40,7 +41,8 @@ let emojiListRandom = [];
 
 function GenerateCard(emoji) {
     const div = document.createElement('div');
-    div.innerHTML = `<div class="hidden ">${emojiList[emoji]} </div>`;
+    div.className = 'hidden';
+    div.innerHTML = `${emojiList[emoji]}`;
     cardContainer.append(div);
     console.log(div.textContent);
 }
@@ -71,6 +73,7 @@ function GenerateCardboard() {
 // se repita de nuevo.
 
 function cards() {
+    console.log(div);
     div.addEventListener('click', (e) => {
         // 1. Seleccionamos de forma inequívoca el elemento sobre el cuál hemos
         // hecho click.
@@ -86,6 +89,24 @@ function cards() {
         } else {
             console.log('estoy con la segunda variable');
             clickedDiv2 = e.target;
+
+            // function setZoom(color) {
+            //     document.querySelectorAll('.var').forEach((item) => {
+            //       item.style.color = color;
+            //     })
+            //   }
+
+            // Estas 2 líneas sirven para bloquear todas las cartas ocultas para
+            // que no se pueda pulsar sobre ellas mientras el programa decide
+            // qué hacer con las 2 cartas seleccionadas previamente.
+            let hiddenCards = document
+                .querySelectorAll('.cards_container>.hidden')
+                .forEach((item) => {
+                    item.className = 'blocked';
+                });
+
+            console.log(hiddenCards);
+
             console.log(clickedDiv2);
             console.log(clickedDiv2.textContent);
             clickedDiv2.className = 'emoji';
@@ -95,12 +116,29 @@ function cards() {
                 clickedDiv2.className = 'emoji';
                 intentos++;
                 console.log(`llevas ${intentos} intentos`);
+                // Pasamos las cartas de estilo bloqueado a (estilo hidden) para que sean
+                // pulsables de nuevo.
+                hiddenCards = document
+                    .querySelectorAll('.cards_container>.blocked')
+                    .forEach((item) => {
+                        item.className = 'hidden';
+                    });
+                isGameOver();
             } else {
                 setTimeout(function () {
+                    // En caso de que las 2 cartas seleccionados no tengan el mismo emoji,
+                    // pasados 2 segundos vuelven a ocultarse (estilo hidden)
                     clickedDiv1.className = 'hidden';
                     clickedDiv2.className = 'hidden';
                     intentos++;
                     console.log(`llevas ${intentos} intentos`);
+                    // Pasamos las cartas de estilo bloqueado a (estilo hidden) para que sean
+                    // pulsables de nuevo tras haber pasado 2 segundos.
+                    hiddenCards = document
+                        .querySelectorAll('.cards_container>.blocked')
+                        .forEach((item) => {
+                            item.className = 'hidden';
+                        });
                 }, 1000);
             }
             setTimeout(function () {
@@ -108,6 +146,14 @@ function cards() {
             }, 1000);
         }
     });
+}
+
+function isGameOver() {
+    if (document.querySelectorAll('.cards_container>.emoji').length === 16) {
+        alert(`¡Has terminado el juego en ${intentos} intentos!`);
+    } else {
+        return;
+    }
 }
 
 GenerateCardboard();
