@@ -1,37 +1,37 @@
 // Seleccionamos el body
 let body = document.body;
 // Seleccionamos el contenedor de los divs
-let cardContainer = document.querySelector(".cards_container");
+let cardContainer = document.querySelector('.cards_container');
 
-let div = document.querySelector("div");
+let div = document.querySelector('div');
 // Array de emojis
 
-let clickedDiv1 = "0";
-let clickedDiv2 = "";
+let clickedDiv1 = '0';
+let clickedDiv2 = '';
 
 let emojiList = [
-    "💀",
-    "💀",
-    "👺",
-    "👺",
-    "🤡",
-    "🤡",
-    "🎅🏻",
-    "🎅🏻",
-    "👽",
-    "👽",
-    "🎃",
-    "🎃",
-    "👾",
-    "👾",
-    "🤖",
-    "🤖",
+    '💀',
+    '💀',
+    '👺',
+    '👺',
+    '🤡',
+    '🤡',
+    '🎅🏻',
+    '🎅🏻',
+    '👽',
+    '👽',
+    '🎃',
+    '🎃',
+    '👾',
+    '👾',
+    '🤖',
+    '🤖',
 ];
 
 let emojiListRandom = [];
 
 function GenerateCard(emoji) {
-    const div = document.createElement("div");
+    const div = document.createElement('div');
     div.innerHTML = `<div class="hidden ">${emojiList[emoji]} </div>`;
     cardContainer.append(div);
     console.log(div.textContent);
@@ -46,59 +46,45 @@ function GenerateCardboard() {
         GenerateCardboard();
     } else if (emojiListRandom.length === 16) {
         console.log(emojiListRandom);
-        card1();
+        cards();
         return;
     } else {
         GenerateCardboard();
     }
 }
 
-function card1() {
-    div.addEventListener("click", (e) => {
+function cards() {
+    div.addEventListener('click', (e) => {
         // 1. Seleccionamos de forma inequívoca el elemento sobre el cuál hemos
         // hecho click.
-        console.log("estoy en card1");
-        console.log("a ver que pasa");
         console.log(clickedDiv1);
-        if (clickedDiv1 === "0") {
-            console.log("estoy con la primera variable");
-            clickedDiv1 = "";
+        if (clickedDiv1 === '0') {
+            console.log('estoy con la primera variable');
+            clickedDiv1 = ''; //vaciamos para quitar el posible contenido de "0"
             clickedDiv1 = e.target;
             console.log(clickedDiv1);
             console.log(clickedDiv1.textContent);
-            // let numberData = Number(clickedDiv1.getAttribute("data-number"));
-            // console.log(numberData);
-            clickedDiv1.className = "emoji";
-            // console.log(cards);
 
-            // console.log(cards);
+            clickedDiv1.className = 'emoji';
         } else {
-            console.log("estoy con la segunda variable");
-            console.log(clickedDiv1);
+            console.log('estoy con la segunda variable');
             clickedDiv2 = e.target;
             console.log(clickedDiv2);
-            console.log(clickedDiv1);
             console.log(clickedDiv2.textContent);
-            // let numberData = Number(clickedDiv2.getAttribute("data-number"));
-            // console.log(numberData);
-            clickedDiv2.className = "emoji";
-
-            // console.log(cards);
+            clickedDiv2.className = 'emoji';
 
             if (clickedDiv1.textContent === clickedDiv2.textContent) {
-                clickedDiv1.className = "emoji";
-                clickedDiv2.className = "emoji";
+                clickedDiv1.className = 'emoji';
+                clickedDiv2.className = 'emoji';
             } else {
                 setTimeout(function () {
-                    clickedDiv1.className = "hidden";
-                    clickedDiv2.className = "hidden";
+                    clickedDiv1.className = 'hidden';
+                    clickedDiv2.className = 'hidden';
                 }, 1000);
             }
             setTimeout(function () {
-                clickedDiv1 = "0";
+                clickedDiv1 = '0';
             }, 1000);
-
-            // console.log(cards);
         }
     });
 }
