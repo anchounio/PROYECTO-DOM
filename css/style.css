@@ -11,7 +11,7 @@
 .emoji {
     padding: 1rem;
     margin: 1rem;
-    /* transition: 0.5s; */
+    transition: 0.5s;
     font-size: 4rem;
     width: 15rem;
     height: 15rem;
@@ -26,7 +26,7 @@ body {
     background-color: gray;
     padding: 1rem;
     margin: 1rem;
-    /* transition: 0.5s; */
+    transition: 0.5s;
     font-size: 0rem;
     width: 15rem;
     height: 15rem;
