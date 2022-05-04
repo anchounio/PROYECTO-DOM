@@ -6,7 +6,11 @@ let cardContainer = document.querySelector('.cards_container');
 let div = document.querySelector('div');
 // Array de emojis
 
+// Valor inicial de "0" para la primera carta que levantamos.
+// Se utiliza para diferenciar si la hemos levantado ya o no.
 let clickedDiv1 = '0';
+
+// Valor inicial vacío para la segunda carta.
 let clickedDiv2 = '';
 
 let emojiList = [
@@ -52,6 +56,15 @@ function GenerateCardboard() {
         GenerateCardboard();
     }
 }
+
+// A través de un addEventListener tomamos 2 variables, clickedDiv1 y clickedDiv2, son 2 cartas que
+// podemos girar para ver el emoji que contienen. clickedDiv1 parte teniendo contenido "0", solo
+// para diferenciar si se ha pasado ya o no. Si tiene contenido "0", se cambia su contenido por el
+// de la tarjeta clickada. Si su contenido es distinto de cero, el programa entenderá que tiene que
+// pasar automáticamente a ver la segunda carta (clickedDiv2).
+
+// Al haber levantado las 2 cartas, se le vuelve a poner valor "0" a clickedDiv1 para que el proceso
+// se repita de nuevo.
 
 function cards() {
     div.addEventListener('click', (e) => {
