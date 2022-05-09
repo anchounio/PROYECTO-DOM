@@ -7,6 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     pointer-events: none;
+    justify-content: center;
 }
 .emoji {
     padding: 1rem;
@@ -16,6 +17,10 @@
     width: 15rem;
     height: 15rem;
     pointer-events: none;
+    transform: rotateY(180deg);
+    transition: transform 0.5s;
+    background-color: lightblue;
+    text-align-last: center;
 }
 
 body {
@@ -31,6 +36,7 @@ body {
     width: 15rem;
     height: 15rem;
     pointer-events: auto;
+    text-align-last: center;
 }
 
 .blocked {
