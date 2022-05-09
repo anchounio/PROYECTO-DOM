@@ -156,7 +156,9 @@ function cards() {
 
 function isGameOver() {
     if (document.querySelectorAll('.cards_container>.emoji').length === 16) {
-        alert(`¡Has terminado el juego en ${intentos} intentos!`);
+        setTimeout(function () {
+            alert(`¡Has terminado el juego en ${intentos} intentos!`);
+        }, 1000);
     } else {
         return;
     }
